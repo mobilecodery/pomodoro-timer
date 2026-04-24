@@ -1,31 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    
+    
+    background-image: url('background.jfif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+     color: white; /* Switch to white for better contrast */
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Soft shadow to make text pop */
+    font-family: 'Poppins', sans-serif;
+}
+
+.timer h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* Style for your 25:00 specifically */
+.time-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.04) 5%,
+        rgba(255, 255, 255, 0) 10%
+    );
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-     background: radial-gradient(circle, #2d3436 0%, #000000 100%);
-    height: 100vh;
-    overflow: hidden;
 }
 
 .timer {
     position: absolute;
-    top: 50%;           
-    left: 50%;          
+    top: 509.5px;
+    top: 170.5px;          
     cursor: grab;
 
     display: flex;
     flex-direction: column;
-    z-index: 1;
-    width: 300px;
-    height: 300px;
-     resize: both;
-    overflow: auto;
     min-width: 200px;
     min-height: 250px;
     align-items: center;
     justify-content: center;
+
+    z-index: 1;
+    width: 300px;
+    height: 300px;
+     
+    resize: both;
+    overflow: auto;
+    
+
     border: #0e5677 solid 1px;
     background-color: #5998ac;
     border-radius: 20px;
@@ -49,4 +96,3 @@
   50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
   100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 }
-
