@@ -1,6 +1,3 @@
-console.log("JS is connected!");
-alert("The script is running!");
-
 const cursor = document.getElementById("liquid-cursor");
 
 document.addEventListener("mousemove", (e) => {
@@ -8,27 +5,18 @@ document.addEventListener("mousemove", (e) => {
     cursor.style.top = e.clientY + "px";
 });
 
-
 const timerBox = document.querySelector(".timer");
 let isDragging = false;
 let offsetX, offsetY;
 
 timerBox.addEventListener("mousedown", (e) => {
+    if (e.target.closest('button') || e.target.id === 'display-text') return;
     const rect = timerBox.getBoundingClientRect();
-    
-    const isResizeHandle = (e.clientX > rect.right - 30) && (e.clientY > rect.bottom - 30);
-
-    if (isResizeHandle) {
-        return; 
-    } else {
-        
-        e.preventDefault(); 
-        isDragging = true;
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-        timerBox.style.opacity = "0.8";
-        timerBox.style.cursor = "grabbing";
-    }
+    isDragging = true;
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    timerBox.style.opacity = "0.8";
+    timerBox.style.cursor = "grabbing";
 });
 
 document.addEventListener("mousemove", (e) => {
@@ -43,15 +31,19 @@ document.addEventListener("mouseup", () => {
     timerBox.style.cursor = "grab";
 });
 
+let currentMode = "work"; 
+let isTimerRunning = false; 
+let timeLeft = 25 * 60;
+let lastSetTime = 25 * 60;
+let timerInterval = null;
+
 const startBtn = document.getElementById('start-btn');
 const resetBtn = document.getElementById('reset-btn');
 const displayText = document.getElementById('display-text');
+const modal = document.getElementById('custom-modal');
+const openBtn = document.getElementById('open-menu-btn');
+const closeBtn = document.getElementById('close-modal');
 const timeDisplay = document.querySelector('.time-display');
-const timerChoice = document.getElementById('timer-choice');
-
-let isTimerRunning = false; 
-let timeLeft = 25 * 60;
-let timerInterval = null;
 
 const messages = [
   "Work hard in silence.<br>Let success make the noise.",
@@ -67,7 +59,6 @@ const messages = [
   "they say fake it till you make it<br>and i did"
 ];
 
-// --- 3. FUNCTIONS ---
 function updateQuote() {
   const randomIndex = Math.floor(Math.random() * messages.length);
   displayText.innerHTML = messages[randomIndex];
@@ -80,6 +71,7 @@ function updateDisplay() {
 }
 
 function startTimer() {
+    clearInterval(timerInterval);
     timerInterval = setInterval(() => {
         if (timeLeft > 0) {
             timeLeft--;
@@ -88,52 +80,54 @@ function startTimer() {
             clearInterval(timerInterval);
             isTimerRunning = false;
             startBtn.innerText = "▶";
-            alert("Session finished! Time for a break?");
+            alert("Session finished!");
         }
     }, 1000);
 }
 
-// --- 4. EVENT LISTENERS ---
-
-// START / PAUSE BUTTON
 startBtn.addEventListener('click', () => {
   if (!isTimerRunning) {
-    // Starting or Resuming
-    if (displayText.innerHTML === "") {
+    if (displayText.innerHTML === "" && currentMode === "work") {
       updateQuote();
     }
     isTimerRunning = true;
     startBtn.innerText = "⏸";
     startTimer();
-    console.log("Timer Started");
   } else {
-    // Pausing
     isTimerRunning = false;
     startBtn.innerText = "▶";
     clearInterval(timerInterval);
-    console.log("Timer Paused");
   }
 });
 
-// RESET BUTTON
 resetBtn.addEventListener('click', () => {
     clearInterval(timerInterval);
     isTimerRunning = false;
     startBtn.innerText = "▶";
-    
-    // Reset time based on the dropdown choice
-    timeLeft = timerChoice.value * 60;
+    timeLeft = lastSetTime; 
     updateDisplay();
-    
-    updateQuote(); 
-    console.log("Timer Reset");
+    if (currentMode === "work") {
+        updateQuote(); 
+    } else {
+        displayText.innerHTML = "Rest up! 🌿";
+    }
 });
 
-// DROPDOWN CHOICE
-timerChoice.addEventListener('change', () => {
+openBtn.onclick = () => modal.style.display = "block";
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.setTimer = function(mins, mode) {
     clearInterval(timerInterval);
     isTimerRunning = false;
     startBtn.innerText = "▶";
-    timeLeft = timerChoice.value * 60;
+    lastSetTime = mins * 60;
+    timeLeft = lastSetTime;
+    currentMode = mode;
     updateDisplay();
-});
+    if (mode === "break") {
+        displayText.innerHTML = "Rest up! 🌿";
+    } else {
+        displayText.innerHTML = ""; 
+    }
+    modal.style.display = "none";
+};

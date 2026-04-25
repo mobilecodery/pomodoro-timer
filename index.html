@@ -9,28 +9,27 @@
 <body>
     <div id="liquid-cursor"></div>
     <div class="container">
-    <div class="settings">
-    <select id="timer-choice">
-        <option value="25">Focus (25m)</option>
-        <option value="50">Deep Work (50m)</option>
-        <option value="5">Short Break (5m)</option>
-        <option value="15">Long Break (15m)</option>
-    </select>
+<div id="custom-modal" class="modal">
+    <div class="modal-content">
+        <h3>Select Session</h3>
+        <div class="modal-options">
+            <button onclick="setTimer(25, 'work')">Focus (25m)</button>
+            <button onclick="setTimer(50, 'work')">Deep Work (50m)</button>
+            <button onclick="setTimer(5, 'break')">Short Break (5m)</button>
+            <button onclick="setTimer(10, 'break')">Long Break (10m)</button>
+        </div>
+        <button id="close-modal">Cancel</button>
     </div>
-
+</div>
+<button id="open-menu-btn" class="menu-trigger">⚙️ Settings</button>
 
     <div class="timer">
     <h2 id="display-text"></h2>
-
     <div class="timer-container">
-        <!-- The SVG Ring -->
         <svg class="progress-ring" width="240" height="240">
-            <!-- Background circle (the "track") -->
             <circle class="progress-ring__track" stroke="rgba(255, 255, 255, 0.1)" stroke-width="8" fill="transparent" r="100" cx="120" cy="120"/>
-            <!-- Foreground circle (the "progress") -->
             <circle class="progress-ring__circle" stroke="#ff8c6b" stroke-width="8" fill="transparent" r="100" cx="120" cy="120"/>
         </svg>
-        
         <div class="time-display">25:00</div>
     </div>
 
@@ -39,7 +38,6 @@
         <button id="reset-btn" class="reset-btn">↺</button>
     </div>
 </div>
-
     <script src="script.js"></script>
 </body>
 </html>
