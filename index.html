@@ -11,15 +11,26 @@
     <div class="container">
     
     <div class="timer">
-        <h3>Pomodoro Timer</h1>
-        <h1 class="time-display">25:00</h1>
-        <div class="control-buttons">
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="reset">Reset</button>
-        </div>
+    <h2 id="display text"></h2>
+
+    <div class="timer-container">
+        <!-- The SVG Ring -->
+        <svg class="progress-ring" width="240" height="240">
+            <!-- Background circle (the "track") -->
+            <circle class="progress-ring__track" stroke="rgba(255, 255, 255, 0.1)" stroke-width="8" fill="transparent" r="100" cx="120" cy="120"/>
+            <!-- Foreground circle (the "progress") -->
+            <circle class="progress-ring__circle" stroke="#ff8c6b" stroke-width="8" fill="transparent" r="100" cx="120" cy="120"/>
+        </svg>
+        
+        <div class="time-display">25:00</div>
     </div>
+
+    <div class="controls">
+        <button id="main-btn" class="play-btn">▶</button>
+        <button id="reset-btn" class="reset-btn">↺</button>
     </div>
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

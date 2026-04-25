@@ -7,13 +7,13 @@ body {
     font-family: 'Poppins', sans-serif;
     
     
-    background-image: url('background.jfif');
+    background-image: url('bg.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
-     color: white; /* Switch to white for better contrast */
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Soft shadow to make text pop */
+     color: rgb(241, 180, 180); 
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -54,20 +54,22 @@ body::before {
 
 .timer {
     position: absolute;
-    top: 509.5px;
-    top: 170.5px;          
+    left: 554px;
+    top: 88.5px;          
     cursor: grab;
 
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    min-height: 250px;
+    min-width: 242px;
+    min-height: 440px;
+    max-width: 1326px;
+    max-height: 650px;;
     align-items: center;
     justify-content: center;
 
     z-index: 1;
-    width: 300px;
-    height: 300px;
+    width: 266px;
+    height: 466px;
      
     resize: both;
     overflow: auto;
@@ -78,7 +80,7 @@ body::before {
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(16, 49, 87, 0.2);
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -95,4 +97,64 @@ body::before {
   0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
   50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
   100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+/* Center the time inside the circle */
+.timer-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.progress-ring {
+    transform: rotate(-90deg); /* Starts the circle at the 12 o'clock position */
+}
+
+.progress-ring__circle {
+    stroke-linecap: round; /* Makes the ends of the progress line rounded */
+    transition: stroke-dashoffset 0.3s;
+    /* This next line "hides" the circle until we add logic tomorrow */
+    stroke-dasharray: 628; 
+    stroke-dashoffset: 0; 
+    filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
+    stroke: #f78b9b;
+}
+
+.time-display {
+    position: absolute; /* Floats it right in the middle of the SVG */
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+/* 3. Sleek Unified Buttons */
+.controls {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    
+}
+
+.controls button {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    color: #f78b9b;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.9);
 }

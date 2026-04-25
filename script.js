@@ -16,14 +16,12 @@ let offsetX, offsetY;
 timerBox.addEventListener("mousedown", (e) => {
     const rect = timerBox.getBoundingClientRect();
     
-    // Check if clicking the bottom-right corner (approx 30px area for easier grabbing)
     const isResizeHandle = (e.clientX > rect.right - 30) && (e.clientY > rect.bottom - 30);
 
     if (isResizeHandle) {
-        // If it IS the handle, we DO NOTHING and let the CSS 'resize' work
         return; 
     } else {
-        // If it's NOT the handle, we start the dragging logic
+        
         e.preventDefault(); 
         isDragging = true;
         offsetX = e.clientX - rect.left;
