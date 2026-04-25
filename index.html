@@ -9,9 +9,18 @@
 <body>
     <div id="liquid-cursor"></div>
     <div class="container">
-    
+    <div class="settings">
+    <select id="timer-choice">
+        <option value="25">Focus (25m)</option>
+        <option value="50">Deep Work (50m)</option>
+        <option value="5">Short Break (5m)</option>
+        <option value="15">Long Break (15m)</option>
+    </select>
+    </div>
+
+
     <div class="timer">
-    <h2 id="display text"></h2>
+    <h2 id="display-text"></h2>
 
     <div class="timer-container">
         <!-- The SVG Ring -->
@@ -26,7 +35,7 @@
     </div>
 
     <div class="controls">
-        <button id="main-btn" class="play-btn">▶</button>
+        <button id="start-btn" class="play-btn">▶</button>
         <button id="reset-btn" class="reset-btn">↺</button>
     </div>
 </div>
