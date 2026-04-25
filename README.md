@@ -14,4 +14,10 @@ I am a student from Pakistan (Sindh Board) preparing for college in 2026. I buil
 - [x] add progress bar
 - [x] Finish JavaScript countdown logic
 - [x] Design "Work/Break" toggle
-- [ ] Add sound notification
+
+## 🚀 Future Features (To-Do)
+- [ ] **Background Noise:** Add Lo-Fi, Rain, and White Noise options.
+- [ ] **Audio Alerts:** Add a "ding" sound when the session completes.
+- [ ] **Progress Ring Sync:** Make the SVG ring drain as time counts down.
+- [ ] **Local Storage:** Save the user's favorite session length.
+
