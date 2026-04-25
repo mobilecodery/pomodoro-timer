@@ -12,6 +12,6 @@ I am a student from Pakistan (Sindh Board) preparing for college in 2026. I buil
 ## 🚧 Development Status: Phase 1
 - [x] Create GitHub Repository
 - [x] add progress bar
-- [ ] Finish JavaScript countdown logic
-- [ ] Design "Work/Break" toggle
+- [x] Finish JavaScript countdown logic
+- [x] Design "Work/Break" toggle
 - [ ] Add sound notification
